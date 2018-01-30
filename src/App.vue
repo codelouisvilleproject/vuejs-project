@@ -1,23 +1,85 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <main-nav />
+    <router-view />
   </div>
 </template>
 
 <script>
+import 'bulma/css/bulma.css'
+import MainNav from './components/MainNav.vue'
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    'main-nav': MainNav
+  }
 }
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  background: silver;
+  min-height: 100vh;
 }
+#app {
+  background: silver;
+  min-height: 100vh;
+}
+.navbar {
+  background: #555;
+}
+
+.navbar-brand {
+  align-items: center;
+}
+
+.navbar-brand img {
+  margin-right: 12px;
+}
+
+.navbar-item {
+  color: whitesmoke;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.navbar-item img {
+  max-height: 75px;
+}
+
+.navbar-link {
+  color: whitesmoke;
+}
+
+li a {
+  background: whitesmoke;
+}
+
+.tabs.is-toggle a {
+  border-color: #333;
+  background: grey;
+}
+
+.tabs.is-toggle li:last-child a,
+.tabs.is-toggle li:first-child a {
+  border-radius: 0;
+}
+
+.tabs.is-toggle a {
+  border-radius: 0;
+}
+
+.tabs.is-toggle li.is-active a {
+  border-color: #333;
+  background-color: #444;
+  border-radius: 0;
+}
+
+.tabs.is-toggle a:hover {
+  border-color: #333;
+  background: #444;
+  color: white;
+}
+
 </style>
