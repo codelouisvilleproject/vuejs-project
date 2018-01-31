@@ -22,10 +22,7 @@ export default {
   background: silver;
   min-height: 100vh;
 }
-#app {
-  background: silver;
-  min-height: 100vh;
-}
+
 .navbar {
   background: #555;
 }
