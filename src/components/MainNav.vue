@@ -16,6 +16,7 @@
     <div class="navbar-menu"
          :class="{ 'is-active': isHamburgerActive }">
       <div class="navbar-end">
+        <a class="navbar-item">&lt;Code Louisville&gt;</a>
         <a class="navbar-item">Sign Out</a>
       </div>
     </div>
@@ -39,16 +40,19 @@ export default {
 </script>
 
 <style scoped>
+@media (max-width: 1023px) {
+  .navbar-menu.is-active {
+    background: #333;
+  }
+}
 .navbar-menu {
   background: #555;
   color: whitesmoke;
   text-align: center;
 }
-.navbar-menu.is-active {
-  background: #333;
-}
 .navbar-item:hover {
   background: whitesmoke;
+  color: #333;
 }
 .navbar-burger {
   background: #444;
