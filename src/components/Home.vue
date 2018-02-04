@@ -2,14 +2,14 @@
   <div>
     <div class="tabs is-toggle is-fullwidth">
       <ul>
-        <li :class="{ 'is-active': isPath('/activity') }"
+        <li :class="{ 'is-active': isPath('activity') }"
             @click="goToRoute(0)">
           <a>
             <span class="icon is-small"><i class="fas fa-rocket"></i></span>
             <span>Avtivity</span>
           </a>
         </li>
-        <li :class="{ 'is-active': isPath('/profile') }"
+        <li :class="{ 'is-active': isPath('profile') }"
             @click="goToRoute(1)">
           <a>
             <span class="icon is-small"><i class="fas fa-user"></i></span>
@@ -18,6 +18,7 @@
         </li>
       </ul>
     </div>
+
     <router-view />
   </div>
 </template>
@@ -27,9 +28,10 @@ export default {
   name: 'Home',
   methods: {
     isPath: function(path) {
-      return this.$route.path === path
+      return this.$route.name === path
     },
     goToRoute: function(index) {
+      const home = (index ===2);
       const activity = (index === 0);
       const profile = (index === 1);
 

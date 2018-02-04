@@ -55,6 +55,7 @@ export default {
   color: #333;
 }
 .navbar-burger {
+  margin-right: 16px;
   background: #444;
   color:#fff;
   border: 1px solid silver;

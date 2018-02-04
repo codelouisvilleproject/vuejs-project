@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import SignIn from '@/components/SignIn.vue'
 import Home from '@/components/Home'
 import Activity from '@/components/Activity'
 import Profile from '@/components/Profile'
@@ -10,6 +11,11 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'signIn',
+      component: SignIn,
+    },
+    {
+      path: '/:userName/dashboard',
       component: Home,
       children: [
         {
@@ -25,7 +31,7 @@ export default new Router({
         {
           // set up default path
           path:'',
-          redirect: '/activity'
+          redirect: '/:userName/dashboard/activity'
         }
       ]
     }
