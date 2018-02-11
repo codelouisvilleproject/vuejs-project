@@ -8,7 +8,8 @@
 <script>
 import 'bulma/css/bulma.css'
 import MainNav from './components/MainNav.vue'
-
+// add something to tell if there is a user signed in
+// in order to hide/show sign out button
 export default {
   name: 'app',
   components: {
