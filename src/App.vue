@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import 'bulma/css/bulma.css'
 import MainNav from './components/MainNav.vue'
 
 export default {
