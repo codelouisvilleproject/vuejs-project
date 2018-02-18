@@ -1,55 +1,26 @@
 <template>
   <div class="activity-page-wrapper">
-    <!-- add activity modal should go here -->
     <button class="add-activity button"
             @click="this.toggleModalState">Add Activity</button>
-    <!-- Add Props -->
+
     <activity-modal :isModalActive="this.isModalActive"
                     :newActivity="this.newActivity"
                     :toggleModalState="this.toggleModalState"
                     :logNewActivity="this.logNewActivity"></activity-modal>
-    <!-- TODO -->
-    <!-- Activities List Component -->
-    <div class="activities-container columns">
-      <!-- Individual Activity Card Components -->
-      <div class="column activity"
-           v-for="activity in activities">
-        <div class="card">
-          <header class="card-header">
-            <p class="card-header-title">
-              {{ activity.name }}
-            </p>
-            <!-- <a href="#" class="card-header-icon" aria-label="more options">
-              <span class="icon">
-                <i class="fas fa-angle-down" aria-hidden="true"></i>
-              </span>
-            </a> -->
-          </header>
-          <div class="card-content">
-            <div class="content">
-              <a href="#">#{{ activity.type }}</a>
-              <br>
-              <time>{{ activity.duration }} minutes</time>
-            </div>
-          </div>
-          <!-- <footer class="card-footer">
-            <a href="#" class="card-footer-item">Save</a>
-            <a href="#" class="card-footer-item">Edit</a>
-            <a href="#" class="card-footer-item">Delete</a>
-          </footer> -->
-        </div>
-      </div>
-    </div>
+
+    <activities-list :activities="this.activities"></activities-list>
   </div>
 </template>
 
 <script>
   import ActivityModal from './ActivityModal';
+  import ActivitiesList from './ActivitiesList';
 
   export default {
     name: 'activity',
     components: {
-      'activity-modal': ActivityModal
+      'activity-modal': ActivityModal,
+      'activities-list': ActivitiesList
     },
     methods: {
       toggleModalState: function() {
@@ -66,6 +37,8 @@
           type: this.newActivity.type,
           duration: this.newActivity.duration
         });
+        // TODO
+        // PUT to db
         this.newActivity.name = '';
         this.newActivity.selectedType = 'Cardio';
         this.newActivity.duration = '';
