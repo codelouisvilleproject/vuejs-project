@@ -3,64 +3,11 @@
     <!-- add activity modal should go here -->
     <button class="add-activity button"
             @click="this.toggleModalState">Add Activity</button>
-    <!-- TODO -->
-    <!-- Make Modal It's Own Component -->
-    <div class="modal"
-         :class="{ 'is-active': this.isModalActive }">
-      <div class="modal-background"></div>
-      <div class="modal-card">
-        <header class="modal-card-head">
-          <p class="modal-card-title">Add Activity</p>
-          <button class="delete"
-                  aria-label="close"
-                  @click="this.toggleModalState"></button>
-        </header>
-        <section class="modal-card-body">
-
-          <!-- Add Activity Form -->
-          <div class="field">
-            <label class="label">Activity Name</label>
-            <div class="control">
-              <input class="input"
-                     type="text"
-                     placeholder="Daily run"
-                     v-model="newActivity.name" />
-            </div>
-            <p class="help">Optional help txt</p>
-          </div>
-
-          <div class="field">
-            <label class="label">Activity Type</label>
-            <span class="select">
-              <!-- could populate this from the db of activity types -->
-              <select v-model="newActivity.type">
-                <option selected>Cardio</option>
-                <option>Weight Lifting</option>
-                <option>etc.</option>
-              </select>
-            </span>
-          </div>
-
-          <div class="field">
-            <label class="label">Total Duration</label>
-            <div class="control">
-              <input class="input"
-                     type="number"
-                     v-model="newActivity.duration" />
-            </div>
-          </div>
-
-        </section>
-        <footer class="modal-card-foot">
-          <button class="button is-success"
-                  @click="logNewActivity">Submit Activity</button>
-          <button class="button"
-                  @click="this.toggleModalState">Cancel</button>
-        </footer>
-      </div>
-    </div>
-    <!-- END MODAL -->
-
+    <!-- Add Props -->
+    <activity-modal :isModalActive="this.isModalActive"
+                    :newActivity="this.newActivity"
+                    :toggleModalState="this.toggleModalState"
+                    :logNewActivity="this.logNewActivity"></activity-modal>
     <!-- TODO -->
     <!-- Activities List Component -->
     <div class="activities-container columns">
@@ -80,8 +27,7 @@
           </header>
           <div class="card-content">
             <div class="content">
-              <p>DOH!</p>
-              <a href="#">@User</a>. <a href="#">#{{ activity.type }}</a>
+              <a href="#">#{{ activity.type }}</a>
               <br>
               <time>{{ activity.duration }} minutes</time>
             </div>
@@ -98,14 +44,19 @@
 </template>
 
 <script>
+  import ActivityModal from './ActivityModal';
+
   export default {
     name: 'activity',
+    components: {
+      'activity-modal': ActivityModal
+    },
     methods: {
       toggleModalState: function() {
         this.isModalActive = !this.isModalActive;
       },
       logNewActivity: function() {
-        if (this.newActivity.name === ''||
+        if (this.newActivity.name === '' ||
             this.newActivity.start === '' ||
             this.newActivity.end === '') {
           return
