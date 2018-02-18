@@ -8,7 +8,8 @@
                     :toggleModalState="this.toggleModalState"
                     :logNewActivity="this.logNewActivity"></activity-modal>
 
-    <activities-list :activities="this.activities"></activities-list>
+    <activities-list :activities="this.activities"
+                     :deleteActivity="this.deleteActivity"></activities-list>
   </div>
 </template>
 
@@ -36,7 +37,7 @@
             this.newActivity.duration === '') {
           return
         }
-        this.activities.push({
+        this.activities.unshift({
           name: this.newActivity.name,
           type: this.newActivity.type,
           duration: this.newActivity.duration,
@@ -47,6 +48,17 @@
         this.toggleModalState();
         // TODO
         // POST to db
+      },
+      deleteActivity: function(id) {
+        // TODO
+        // DELETE to db
+        // Add nice looking prompt to check if user is sure they want to delete
+        let newList = this.activities.filter((activity) => id !== activity.id)
+        this.activities = newList
+      },
+      saveActivity: function(activity) {
+        // TODO
+        // PUT to db with changes
       }
     },
     data: function() {
@@ -63,14 +75,14 @@
         activities: [
           {
             name: 'Some 5k',
-            type: 'cardio',
+            type: 'Cardio',
             duration: 45,
             date: Date.now(),
             id: 0
           },
           {
             name: 'Daily run',
-            type: 'cardio',
+            type: 'Cardio',
             duration: 30,
             date: Date.now(),
             id: 1

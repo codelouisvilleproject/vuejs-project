@@ -3,6 +3,7 @@
     <!-- Individual Activity Card Components -->
   <activity-list-item v-for="activity in activities"
                       :activity="activity"
+                      :deleteActivity="deleteActivity"
                       :key="activity.id"></activity-list-item>
   </div>
 </template>
@@ -11,7 +12,7 @@
 import ActivityListItem from './ActivityListItem'
 
 export default {
-  props: ['activities'],
+  props: ['activities', 'deleteActivity'],
   components: {
     'activity-list-item': ActivityListItem
   }
