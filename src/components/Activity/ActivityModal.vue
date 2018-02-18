@@ -20,7 +20,6 @@
                    placeholder="Daily run"
                    v-model="newActivity.name" />
           </div>
-          <p class="help">Optional help txt</p>
         </div>
 
         <div class="field">

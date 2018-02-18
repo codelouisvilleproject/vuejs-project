@@ -26,27 +26,32 @@
       toggleModalState: function() {
         this.isModalActive = !this.isModalActive;
       },
+      resetNewActivityForm: function() {
+        this.newActivity.name = '';
+        this.newActivity.selectedType = 'Cardio';
+        this.newActivity.duration = '';
+      },
       logNewActivity: function() {
         if (this.newActivity.name === '' ||
-            this.newActivity.start === '' ||
-            this.newActivity.end === '') {
+            this.newActivity.duration === '') {
           return
         }
         this.activities.push({
           name: this.newActivity.name,
           type: this.newActivity.type,
-          duration: this.newActivity.duration
+          duration: this.newActivity.duration,
+          id: this.currentId
         });
-        // TODO
-        // PUT to db
-        this.newActivity.name = '';
-        this.newActivity.selectedType = 'Cardio';
-        this.newActivity.duration = '';
+        this.currentId ++
+        this.resetNewActivityForm();
         this.toggleModalState();
+        // TODO
+        // POST to db
       }
     },
     data: function() {
       return {
+        currentId: 3,
         isModalActive: false,
         // list of all activities
         newActivity: {
@@ -60,12 +65,27 @@
             name: 'Some 5k',
             type: 'cardio',
             duration: 45,
-            date: Date.now()
+            date: Date.now(),
+            id: 0
+          },
+          {
+            name: 'Daily run',
+            type: 'cardio',
+            duration: 30,
+            date: Date.now(),
+            id: 1
+          },
+          {
+            name: 'Leg day',
+            type: 'Weight Lifting',
+            duration: 120,
+            date: Date.now(),
+            id: 2
           }
         ]
-        // TODO:
-        // fetch from db when component mounts
       }
+      // TODO:
+      // fetch from db when component mounted
     }
   }
 </script>
