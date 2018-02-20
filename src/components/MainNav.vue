@@ -2,8 +2,7 @@
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
-        <img src="https://images.duckduckgo.com/iu/?u=https%3A%2F%2Fimage.flaticon.com%2Ficons%2Fpng%2F512%2F249%2F249209.png&f=1" width="75" height="75">
-        Fit Together
+        <img src="../assets/FitTogetherLogo.png" width="75" height="75">
       </a>
       <button class="button navbar-burger"
               @click="toggleHamburgerMenu()">
