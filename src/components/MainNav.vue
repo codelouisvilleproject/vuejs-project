@@ -49,10 +49,18 @@ export default {
   color: whitesmoke;
   text-align: center;
 }
-.navbar-item:hover {
-  background: whitesmoke;
+
+.navbar-brand:hover, .navbar-item:hover {
+  background: grey;
   color: #333;
 }
+
+.navbar-brand img {
+  height: 85px;
+  width: auto;
+}
+
+
 .navbar-burger {
   margin-right: 16px;
   background: #444;
