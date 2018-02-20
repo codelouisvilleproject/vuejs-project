@@ -1,14 +1,14 @@
 <template>
   <div class="sign-up-form">
     <h1 class="title">Sign In!</h1>
-
     <div class="field">
       <label class="label">User name</label>
       <div class="control">
         <div class="control has-icons-left has-icons-right">
         <input class="input is-success"
                type="text"
-               placeholder="Frank_Iero" />
+               placeholder="Gene_Defcon" />
+        <!-- if user name is valid show the p below -->
         <p class="help is-success">This username is available</p>
         <span class="icon is-small is-left">
           <i class="fas fa-user"></i>
@@ -33,6 +33,7 @@
           <i class="fas fa-exclamation-triangle"></i>
         </span>
       </div>
+      <!-- if password not valid show p below -->
       <p class="help is-danger">Password is not valid.</p>
     </div>
 
