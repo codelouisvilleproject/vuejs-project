@@ -7,7 +7,7 @@
 
     <div class="profile-container columns is-multiline">
 
-      <div class="column profile is-centered is-full" v-for="user in currentUser">
+      <div class="column profile is-centered is-full">
 
         <div class="card">
 
@@ -22,16 +22,16 @@
           <div class="card-content">
             <div class="content columns">
               <div class="column is-four-fifths">
-                <h2>{{user.fName}} {{user.lName}}</h2>
-                <h4>{{user.email}}</h4>
-                <h4>{{user.bio}}</h4>
-                <h4>{{user.weight}}</h4>
-                <h4>{{user.birthDay}}</h4>
-                <h4>{{user.address1}}</h4>
-                <h4>{{user.address2}}</h4>
-                <h4>{{user.city}} {{user.state}} {{user.zip}}</h4>
+                <h2>{{currentUser.fName}} {{currentUser.lName}}</h2>
+                <h4>{{currentUser.email}}</h4>
+                <h4>{{currentUser.bio}}</h4>
+                <h4>{{currentUser.weight}}</h4>
+                <h4>{{currentUser.birthDay}}</h4>
+                <h4>{{currentUser.address1}}</h4>
+                <h4>{{currentUser.address2}}</h4>
+                <h4>{{currentUser.city}} {{currentUser.state}} {{currentUser.zip}}</h4>
               </div>
-              <img class="userImg column" :src="user.img">
+              <img class="userImg column" :src="currentUser.img">
             </div>
           </div>
         </div>
@@ -64,13 +64,15 @@
 
 
 <script>
+import { default as fit } from '../fitClient';
+
   export default {
     name: 'profile',
 
     data: function() {
       return {
 
-        currentUser: [
+        currentUser:
           {
               fName: 'Isaac',
               lName:  'Cheatham',
@@ -87,7 +89,7 @@
               state: 'KY',
               zip: '40213'
           }
-        ],
+        ,
 
         activities: [
           {
@@ -122,6 +124,10 @@
     },
 
     methods: {
+      getUserInfo: function() {
+        fit.getUserInfo()
+          .then(res => this.currentUser = res)
+      }
       // toggleModalState: function() {
       //   this.isModalActive = !this.isModalActive;
       // },
