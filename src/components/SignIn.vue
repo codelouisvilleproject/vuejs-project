@@ -5,17 +5,18 @@
       <label class="label">User name</label>
       <div class="control">
         <div class="control has-icons-left has-icons-right">
-        <input class="input is-success"
+        <input class="input"
                type="text"
-               placeholder="Gene_Defcon" />
+               placeholder="Gene_Defcon"
+               v-model="username" />
         <!-- if user name is valid show the p below -->
-        <p class="help is-success">This username is available</p>
+        <!-- <p class="help is-success">This username is available</p> -->
         <span class="icon is-small is-left">
           <i class="fas fa-user"></i>
         </span>
-        <span class="icon is-small is-right">
+        <!-- <span class="icon is-small is-right">
           <i class="fas fa-check"></i>
-        </span>
+        </span> -->
       </div>
       </div>
     </div>
@@ -25,35 +26,53 @@
       <div class="control has-icons-left has-icons-right">
         <input class="input"
                type="password"
-               placeholder="password" />
+               placeholder="password"
+               v-model="password" />
         <span class="icon is-small is-left">
           <i class="fas fa-lock"></i>
         </span>
-        <span class="icon is-small is-right">
+        <!-- <span class="icon is-small is-right">
           <i class="fas fa-exclamation-triangle"></i>
-        </span>
+        </span> -->
       </div>
       <!-- if password not valid show p below -->
-      <p class="help is-danger">Password is not valid.</p>
+      <!-- <p class="help is-danger">Password is not valid.</p> -->
     </div>
 
     <div class="field is-grouped">
       <div class="control">
-        <router-link class="button is-link"
-                     tag="button"
-                     :to="{ name: 'activity',
-                            params: {
-                              userName: 'User'
-                            }
-                          }">Sign In!</router-link>
+        <button class="button is-link"
+                tag="button"
+                @click="signIn">Sign In!</button>
       </div>
     </div>
+    <a href="">Not a member yet? Sign up now!</a>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'signIn'
+    name: 'signIn',
+    data: function () {
+      return {
+        username: '',
+        password: ''
+      }
+    },
+    methods: {
+      signIn: function() {
+        // make req to server to create new account
+        // then suggest sign in
+        if (!this.username || !this.password) return
+
+        this.$router.push({
+          name: 'activity',
+          params: {
+            userName: this.username
+          }
+        });
+      }
+    }
   }
 </script>
 
