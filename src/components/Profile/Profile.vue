@@ -5,6 +5,8 @@
 
     <!-- TODO -->
 
+
+
     <div class="profile-container columns is-multiline">
 
       <div class="column profile is-centered is-full">
@@ -16,6 +18,8 @@
             Profile Overview
             </h2>
             </a>
+            <button class="add-activity button"
+                    @click="this.toggleModalState">Edit Profile</button>
           </header>
 
 
@@ -31,30 +35,19 @@
                 <h4>{{currentUser.address2}}</h4>
                 <h4>{{currentUser.city}} {{currentUser.state}} {{currentUser.zip}}</h4>
               </div>
-              <img class="userImg column" :src="currentUser.img">
+              <img class="userImg column" :src="require('../../assets/gravatar.jpg')">
             </div>
           </div>
         </div>
       </div>
 
-      <div class="column profileActivities">
-        <div class="columns is-multiline">
-          <div class="column is-half profileActivity" v-for="activity in activities">
-            <div class="card">
-              <div class="card-content">
-                <div class="content">
-                  <h2>{{activity.name}}</h2>
-                  <h4>{{activity.type}}</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
     </div>
-  </div>
 
+    <edit-modal :isModalActive="this.isModalActive"
+                :toggleModalState="this.toggleModalState"
+                :editUser="this.currentUser">
+    </edit-modal>
+  </div>
 
 </template>
 
@@ -64,20 +57,25 @@
 
 
 <script>
-import { default as fit } from '../fitClient';
+import { default as fit } from '../../fitClient';
+import EditModal from './EditModal';
 
   export default {
     name: 'profile',
-
+    components: {
+      'edit-modal': EditModal
+    },
     data: function() {
       return {
+        isModalActive: false,
 
         currentUser:
           {
+
               fName: 'Isaac',
               lName:  'Cheatham',
               email:  'myEmail@gmail.com',
-              img: require('../assets/gravatar.jpg'),
+              img: require('../../assets/gravatar.jpg'),
               weight: '180',
               bio: 'Tongue bresaola alcatra corned beef, brisket beef kielbasa strip steak venison tri-tip tail cow. Doner kevin alcatra,'+
               'porchetta turducken ham hock biltong andouille shank. Chuck turkey jerky brisket, shank leberkas picanha jowl. Kevin strip steak meatloaf' +
@@ -89,44 +87,13 @@ import { default as fit } from '../fitClient';
               state: 'KY',
               zip: '40213'
           }
-        ,
-
-        activities: [
-          {
-            name: 'Some 5k',
-            type: 'cardio',
-            duration: 45,
-            date: Date.now()
-          },
-
-          {
-            name: 'Bike Ride',
-            type: 'cardio',
-            duration: 45,
-            date: Date.now()
-          },
-          {
-            name: 'Some 5k',
-            type: 'cardio',
-            duration: 45,
-            date: Date.now()
-          },
-
-          {
-            name: 'Bike Ride',
-            type: 'cardio',
-            duration: 45,
-            date: Date.now()
-          }
-        ]
-
+        
       }
     },
 
-    methods: {
-      getUserInfo: function() {
-        fit.getUserInfo()
-          .then(res => this.currentUser = res)
+    mounted() {
+        fit.getUserProfileInfo(1234)
+          .then(res => {this.currentUser = res})
       }
       // toggleModalState: function() {
       //   this.isModalActive = !this.isModalActive;
@@ -147,8 +114,17 @@ import { default as fit } from '../fitClient';
       //   this.newActivity.duration = '';
       //   this.toggleModalState();
       // }
+    ,
+    methods: {
+      toggleModalState: function() {
+        this.isModalActive = !this.isModalActive;
+      }
+      // logItems: function() {
+      //   console.log(typeof this.currentUser);
+      // }
     }
   }
+
 </script>
 
 

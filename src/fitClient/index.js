@@ -12,7 +12,7 @@ class FitClient {
   }
 
   getUserProfileInfo(uid) {
-    return axios.get(`${this.apiBaseUrl}/users/${uid}/`)
+    return axios.get(`${this.apiBaseUrl}/users/${uid}`)
       .then(res => res.data)
   }
 
