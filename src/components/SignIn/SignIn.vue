@@ -8,7 +8,7 @@
         <input class="input"
                type="text"
                placeholder="Gene_Defcon"
-               v-model="username" />
+               v-model="this.signInForm.username" />
         <!-- if user name is valid show the p below -->
         <!-- <p class="help is-success">This username is available</p> -->
         <span class="icon is-small is-left">
@@ -27,7 +27,7 @@
         <input class="input"
                type="password"
                placeholder="password"
-               v-model="password" />
+               v-model="this.signInForm.password" />
         <span class="icon is-small is-left">
           <i class="fas fa-lock"></i>
         </span>
@@ -46,17 +46,33 @@
                 @click="signIn">Sign In!</button>
       </div>
     </div>
-    <a href="">Not a member yet? Sign up now!</a>
+    <button class="button"
+            @click="this.toggleModalState">Not a member yet? Sign up now!</button>
+    <sign-up-modal :signUpForm="this.signUpForm"
+                   :isModalActive="this.isSignUpModalOpen"
+                   :toggleModalState="this.toggleModalState"></sign-up-modal>
   </div>
 </template>
 
 <script>
+  import SignUpModal from './SignUpModal';
+
   export default {
     name: 'signIn',
+    components: {
+      'sign-up-modal': SignUpModal
+    },
     data: function () {
       return {
-        username: '',
-        password: ''
+        isSignUpModalOpen: false,
+        signInForm: {
+          username: '',
+          password: ''
+        },
+        signUpForm: {
+          username: '',
+          password: ''
+        }
       }
     },
     methods: {
@@ -71,6 +87,9 @@
             userName: this.username
           }
         });
+      },
+      toggleModalState: function() {
+        this.isSignUpModalOpen = !this.isSignUpModalOpen;
       }
     }
   }
