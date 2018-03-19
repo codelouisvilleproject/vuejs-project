@@ -16,9 +16,17 @@ class FitClient {
       .then(res => res.data)
   }
 
-  getUserActivities() {
-    return axios.get(`${this.apiBaseUrl}`)
+  getUserActivities(uid) {
+    return axios.get(`${this.apiBaseUrl}/users/${uid}/`)
       .then(res => res.data)
+  }
+
+  postLogIn() {
+
+  }
+
+  postSignUp() {
+
   }
 }
 
