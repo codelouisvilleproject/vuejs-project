@@ -10,10 +10,12 @@
 
     <activities-list :activities="this.activities"
                      :deleteActivity="this.deleteActivity"></activities-list>
+    <button @click="this.getActivities">dum butn</button>
   </div>
 </template>
 
 <script>
+  import { default as fit } from '../../fitClient';
   import ActivityModal from './ActivityModal';
   import ActivitiesList from './ActivitiesList';
 
@@ -59,6 +61,13 @@
       saveActivity: function(activity) {
         // TODO
         // PUT to db with changes
+        axios.post('');
+      },
+      getActivities: function() {
+        fit.getActivityTypes()
+          .then(res => console.log(res))
+        fit.getUserInfo()
+          .then(res => console.log(res))
       }
     },
     data: function() {

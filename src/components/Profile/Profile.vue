@@ -5,9 +5,11 @@
 
     <!-- TODO -->
 
+
+
     <div class="profile-container columns is-multiline">
 
-      <div class="column profile is-centered is-full" v-for="user in currentUser">
+      <div class="column profile is-centered is-full">
 
         <div class="card">
 
@@ -16,45 +18,36 @@
             Profile Overview
             </h2>
             </a>
+            <button class="add-activity button"
+                    @click="this.toggleModalState">Edit Profile</button>
           </header>
 
 
           <div class="card-content">
             <div class="content columns">
               <div class="column is-four-fifths">
-                <h2>{{user.fName}} {{user.lName}}</h2>
-                <h4>{{user.email}}</h4>
-                <h4>{{user.bio}}</h4>
-                <h4>{{user.weight}}</h4>
-                <h4>{{user.birthDay}}</h4>
-                <h4>{{user.address1}}</h4>
-                <h4>{{user.address2}}</h4>
-                <h4>{{user.city}} {{user.state}} {{user.zip}}</h4>
+                <h2>{{currentUser.fName}} {{currentUser.lName}}</h2>
+                <h4>{{currentUser.email}}</h4>
+                <h4>{{currentUser.bio}}</h4>
+                <h4>{{currentUser.weight}}</h4>
+                <h4>{{currentUser.birthDay}}</h4>
+                <h4>{{currentUser.address1}}</h4>
+                <h4>{{currentUser.address2}}</h4>
+                <h4>{{currentUser.city}} {{currentUser.state}} {{currentUser.zip}}</h4>
               </div>
-              <img class="userImg column" :src="user.img">
+              <img class="userImg column" :src="require('../../assets/gravatar.jpg')">
             </div>
           </div>
         </div>
       </div>
 
-      <div class="column profileActivities">
-        <div class="columns is-multiline">
-          <div class="column is-half profileActivity" v-for="activity in activities">
-            <div class="card">
-              <div class="card-content">
-                <div class="content">
-                  <h2>{{activity.name}}</h2>
-                  <h4>{{activity.type}}</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
     </div>
-  </div>
 
+    <edit-modal :isModalActive="this.isModalActive"
+                :toggleModalState="this.toggleModalState"
+                :editUser="this.currentUser">
+    </edit-modal>
+  </div>
 
 </template>
 
@@ -64,18 +57,25 @@
 
 
 <script>
+import { default as fit } from '../../fitClient';
+import EditModal from './EditModal';
+
   export default {
     name: 'profile',
-
+    components: {
+      'edit-modal': EditModal
+    },
     data: function() {
       return {
+        isModalActive: false,
 
-        currentUser: [
+        currentUser:
           {
+
               fName: 'Isaac',
               lName:  'Cheatham',
               email:  'myEmail@gmail.com',
-              img: require('../assets/gravatar.jpg'),
+              img: require('../../assets/gravatar.jpg'),
               weight: '180',
               bio: 'Tongue bresaola alcatra corned beef, brisket beef kielbasa strip steak venison tri-tip tail cow. Doner kevin alcatra,'+
               'porchetta turducken ham hock biltong andouille shank. Chuck turkey jerky brisket, shank leberkas picanha jowl. Kevin strip steak meatloaf' +
@@ -87,41 +87,14 @@
               state: 'KY',
               zip: '40213'
           }
-        ],
-
-        activities: [
-          {
-            name: 'Some 5k',
-            type: 'cardio',
-            duration: 45,
-            date: Date.now()
-          },
-
-          {
-            name: 'Bike Ride',
-            type: 'cardio',
-            duration: 45,
-            date: Date.now()
-          },
-          {
-            name: 'Some 5k',
-            type: 'cardio',
-            duration: 45,
-            date: Date.now()
-          },
-
-          {
-            name: 'Bike Ride',
-            type: 'cardio',
-            duration: 45,
-            date: Date.now()
-          }
-        ]
-
+        
       }
     },
 
-    methods: {
+    mounted() {
+        fit.getUserProfileInfo(1234)
+          .then(res => {this.currentUser = res})
+      }
       // toggleModalState: function() {
       //   this.isModalActive = !this.isModalActive;
       // },
@@ -141,8 +114,17 @@
       //   this.newActivity.duration = '';
       //   this.toggleModalState();
       // }
+    ,
+    methods: {
+      toggleModalState: function() {
+        this.isModalActive = !this.isModalActive;
+      }
+      // logItems: function() {
+      //   console.log(typeof this.currentUser);
+      // }
     }
   }
+
 </script>
 
 
