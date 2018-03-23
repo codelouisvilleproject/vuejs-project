@@ -1,6 +1,5 @@
 <template>
   <div class="activity-page-wrapper">
-    <h1 class="title">welcome {{ this.$route.params.userName }}</h1>
     <button class="add-activity button"
             @click="this.toggleModalState">Add Activity</button>
 
