@@ -8,7 +8,7 @@
         <input class="input"
                type="text"
                placeholder="Gene_Defcon"
-               v-model="signInForm.username" />
+               v-model="signInForm.email" />
         <!-- if user name is valid show the p below -->
         <!-- <p class="help is-success">This username is available</p> -->
         <span class="icon is-small is-left">
@@ -43,7 +43,7 @@
       <div class="control">
         <button class="button is-link"
                 tag="button"
-                @click="signIn">Sign In!</button>
+                @click="signIn(signInForm)">Sign In!</button>
       </div>
     </div>
     <button class="button"
@@ -73,35 +73,39 @@
           birthDay: 0,
           birthMonth: 0,
           birthYear: 0,
-          password: ''
+          email: ''
         },
         signInForm: {
-          username: '',
+          email: '',
           password: ''
         }
       }
     },
     methods: {
-      signIn: function() {
+      signIn: function(creds) {
         // make req to server to create new account
         // then suggest sign in
-        if (!this.signInForm.username || !this.signInForm.password) return
+        if (!creds.username || !creds.password) return
 
-        this.$router.push({
-          name: 'activity',
-          params: {
-            userName: this.signInForm.username
-          }
-        });
-      },
-      toggleModalState: function() {
-        this.isSignUpModalOpen = !this.isSignUpModalOpen;
+        console.log(creds)
+        fit.postSignIn(creds)
+          .then((res) => console.log(res))
+
+        // this.$router.push({
+        //   name: 'activity',
+        //   params: {
+        //     userName: this.signInForm.username
+        //   }
+        // });
       },
       signUp: function(newUser) {
         console.log(newUser)
         fit.postSignUp(newUser)
         .then((res) => console.log(res.message))
-      }
+      },
+      toggleModalState: function() {
+        this.isSignUpModalOpen = !this.isSignUpModalOpen;
+      },
     }
   }
 </script>
