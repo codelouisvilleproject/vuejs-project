@@ -85,21 +85,22 @@
       signIn: function(creds) {
         // make req to server to create new account
         // then suggest sign in
-        if (!creds.username || !creds.password) return
+        if (!creds.email || !creds.password) return
 
-        console.log(creds)
         fit.postSignIn(creds)
-          .then((res) => console.log(res))
-
-        // this.$router.push({
-        //   name: 'activity',
-        //   params: {
-        //     userName: this.signInForm.username
-        //   }
-        // });
+          .then(res => {
+            console.log(res)
+            if (res.status === 200) {
+              this.$router.push({
+                name: 'activity',
+                params: {
+                  userName: res.data.firstName
+                }
+              });
+            }
+          })
       },
       signUp: function(newUser) {
-        console.log(newUser)
         fit.postSignUp(newUser)
         .then((res) => console.log(res.message))
       },
