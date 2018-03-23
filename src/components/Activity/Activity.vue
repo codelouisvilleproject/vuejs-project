@@ -67,8 +67,6 @@
       getActivities: function() {
         fit.getActivityTypes()
           .then(res => console.log(res))
-        fit.getUserProfileInfo(123)
-          .then(res => console.log(res))
       }
     },
     data: function() {

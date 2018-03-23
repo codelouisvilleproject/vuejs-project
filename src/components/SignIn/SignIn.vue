@@ -8,7 +8,7 @@
         <input class="input"
                type="text"
                placeholder="Gene_Defcon"
-               v-model="this.signInForm.username" />
+               v-model="signInForm.username" />
         <!-- if user name is valid show the p below -->
         <!-- <p class="help is-success">This username is available</p> -->
         <span class="icon is-small is-left">
@@ -27,7 +27,7 @@
         <input class="input"
                type="password"
                placeholder="password"
-               v-model="this.signInForm.password" />
+               v-model="signInForm.password" />
         <span class="icon is-small is-left">
           <i class="fas fa-lock"></i>
         </span>
@@ -50,11 +50,13 @@
             @click="this.toggleModalState">Not a member yet? Sign up now!</button>
     <sign-up-modal :signUpForm="this.signUpForm"
                    :isModalActive="this.isSignUpModalOpen"
-                   :toggleModalState="this.toggleModalState"></sign-up-modal>
+                   :toggleModalState="this.toggleModalState"
+                   :signUp="this.signUp"></sign-up-modal>
   </div>
 </template>
 
 <script>
+  import { default as fit } from '../../fitClient';
   import SignUpModal from './SignUpModal';
 
   export default {
@@ -65,11 +67,15 @@
     data: function () {
       return {
         isSignUpModalOpen: false,
-        signInForm: {
-          username: '',
+        signUpForm: {
+          firstName: '',
+          lastName: '',
+          birthDay: 0,
+          birthMonth: 0,
+          birthYear: 0,
           password: ''
         },
-        signUpForm: {
+        signInForm: {
           username: '',
           password: ''
         }
@@ -79,17 +85,22 @@
       signIn: function() {
         // make req to server to create new account
         // then suggest sign in
-        if (!this.username || !this.password) return
+        if (!this.signInForm.username || !this.signInForm.password) return
 
         this.$router.push({
           name: 'activity',
           params: {
-            userName: this.username
+            userName: this.signInForm.username
           }
         });
       },
       toggleModalState: function() {
         this.isSignUpModalOpen = !this.isSignUpModalOpen;
+      },
+      signUp: function(newUser) {
+        console.log(newUser)
+        fit.postSignUp(newUser)
+        .then((res) => console.log(res.message))
       }
     }
   }

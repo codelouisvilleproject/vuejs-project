@@ -21,12 +21,22 @@ class FitClient {
       .then(res => res.data)
   }
 
-  postLogIn() {
-
+  postLogIn(creds) {
+    return axios.post(`${this.apiBaseUrl}/signin`, creds, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.data)
   }
 
-  postSignUp() {
+  postSignUp(newUser) {
+    const body = JSON.stringify(newUser)
 
+    return axios.post(`${this.apiBaseUrl}/signup`, body, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.data)
   }
 }
 
