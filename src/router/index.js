@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import SignIn from '@/components/SignIn.vue'
+import SignIn from '@/components/SignIn/SignIn.vue'
 import Home from '@/components/Home'
 import Activity from '@/components/Activity/Activity'
 import Profile from '@/components/Profile/Profile'
