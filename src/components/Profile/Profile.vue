@@ -26,11 +26,11 @@
           <div class="card-content">
             <div class="content columns">
               <div class="column is-four-fifths">
-                <h2>{{currentUser.fName}} {{currentUser.lName}}</h2>
+                <h2>{{currentUser.firstName}} {{currentUser.lastName}}</h2>
                 <h4>{{currentUser.email}}</h4>
                 <h4>{{currentUser.bio}}</h4>
                 <h4>{{currentUser.weight}}</h4>
-                <h4>{{currentUser.birthDay}}</h4>
+                <h4>{{currentUser.birthMonth}}/{{currentUser.birthDay}}/{{currentUser.birthYear}}</h4>
                 <h4>{{currentUser.address1}}</h4>
                 <h4>{{currentUser.address2}}</h4>
                 <h4>{{currentUser.city}} {{currentUser.state}} {{currentUser.zip}}</h4>
@@ -72,22 +72,14 @@ import EditModal from './EditModal';
         currentUser:
           {
 
-              fName: 'Isaac',
-              lName:  'Cheatham',
+              firstName: 'Isaac',
+              lastName:  'Cheatham',
               email:  'myEmail@gmail.com',
-              img: require('../../assets/gravatar.jpg'),
-              weight: '180',
-              bio: 'Tongue bresaola alcatra corned beef, brisket beef kielbasa strip steak venison tri-tip tail cow. Doner kevin alcatra,'+
-              'porchetta turducken ham hock biltong andouille shank. Chuck turkey jerky brisket, shank leberkas picanha jowl. Kevin strip steak meatloaf' +
-              'meatball turducken landjaeger alcatra turkey t-bone shankle ball tip drumstick.',
-              birthDay: '01/01/1990',
-              address1: '1234 Main Street',
-              address2: '',
-              city: 'Louisville',
-              state: 'KY',
-              zip: '40213'
+              birthMonth: 11,
+              birthDay: 25,
+              birthYear: 1983
           }
-        
+
       }
     },
 

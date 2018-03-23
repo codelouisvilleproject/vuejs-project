@@ -15,13 +15,15 @@
             <tr>
               <th>Rank</th>
               <th>Name</th>
+              <th>Activity Count</th>
               <th>Total Time</th>
             </tr>
           </thead>
         <tr v-for="user in topTen">
-          <td>{{ user.rank }}</td>
+          <td class="has-text-centered">{{ user.rank }}</td>
           <td>{{ user.name }}</td>
-          <td>{{ user.totalDur }}</td>
+          <td class="has-text-centered">{{ user.activityCount }}</td>
+          <td>{{ user.metric }}</td>
         </tr>
         </table>
       </div>
@@ -51,52 +53,72 @@ import { default as fit } from '../fitClient';
           {
             rank: 1,
             name: "Isaac",
-            totalDur: 10000
+            metric: 10000,
+            userId: 0,
+            activityCount: 5
           },
           {
             rank: 2,
-            name: "Steve",
-            totalDur: 9700
+            name: "Isaac",
+            metric: 10000,
+            userId: 0,
+            activityCount: 5
           },
           {
             rank: 3,
             name: "Isaac",
-            totalDur: 10000
+            metric: 10000,
+            userId: 0,
+            activityCount: 5
           },
           {
             rank: 4,
-            name: "Steve",
-            totalDur: 9700
+            name: "Isaac",
+            metric: 10000,
+            userId: 0,
+            activityCount: 5
           },
           {
             rank: 5,
             name: "Isaac",
-            totalDur: 10000
+            metric: 10000,
+            userId: 0,
+            activityCount: 5
           },
           {
             rank: 6,
-            name: "Steve",
-            totalDur: 9700
+            name: "Isaac",
+            metric: 10000,
+            userId: 0,
+            activityCount: 5
           },
           {
             rank: 7,
             name: "Isaac",
-            totalDur: 10000
+            metric: 10000,
+            userId: 0,
+            activityCount: 5
           },
           {
             rank: 8,
-            name: "Steve",
-            totalDur: 9700
+            name: "Isaac",
+            metric: 10000,
+            userId: 0,
+            activityCount: 5
           },
           {
             rank: 9,
-            name: "Steve",
-            totalDur: 9700
+            name: "Isaac",
+            metric: 10000,
+            userId: 0,
+            activityCount: 5
           },
           {
             rank: 10,
-            name: "Steve",
-            totalDur: 9700
+            name: "Isaac",
+            metric: 10000,
+            userId: 0,
+            activityCount: 5
           },
         ]
       }
