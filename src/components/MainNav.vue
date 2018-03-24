@@ -16,23 +16,39 @@
          :class="{ 'is-active': isHamburgerActive }">
       <div class="navbar-end">
         <a class="navbar-item">&lt;Code Louisville&gt;</a>
-        <a class="navbar-item">Sign Out</a>
+        <a v-show="auth.isLoggedIn"
+           class="navbar-item"
+           @click="logOut()">Sign Out</a>
       </div>
     </div>
   </nav>
 </template>
 
 <script>
+import auth from '@/auth'
+import { default as fit } from '@/fitClient'
+
 export default {
   name: 'MainNav',
   data: function() {
     return {
-      isHamburgerActive: false
+      isHamburgerActive: false,
+      auth: auth
     }
   },
   methods: {
     toggleHamburgerMenu: function() {
       return this.isHamburgerActive = !this.isHamburgerActive
+    },
+    logOut() {
+      fit.postSignOut(auth.token)
+        .then(res => {
+          auth.signOut()
+          this.$router.push({
+            path: '/'
+          })
+          console.log(auth)
+        })
     },
   }
 }

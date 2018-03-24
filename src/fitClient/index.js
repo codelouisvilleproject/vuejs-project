@@ -1,8 +1,10 @@
 import axios from 'axios';
+import auth from '@/auth';
 
 class FitClient {
   constructor() {
     axios.defaults.baseURL = 'https://2qvihxpp77.execute-api.us-east-2.amazonaws.com/Staging/';
+
   }
 
   getActivityTypes() {
@@ -11,13 +13,32 @@ class FitClient {
   }
 
   getUserProfileInfo(uid) {
-    return axios.get(`users/${uid}`)
+    return axios.get(`Users/${uid}`)
       .then(res => res.data)
   }
 
-  getUserActivities(uid) {
-    return axios.get(`users/${uid}/activities`)
+  getUserActivities() {
+    const body = JSON.stringify({token: auth.user.token})
+
+    return axios.get(`Users/${auth.user.id}/Activities`, body, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth.user.token}`
+      },
+      data: body
+    })
       .then(res => res.data)
+  }
+
+  postUserActivity(activity) {
+    const body = JSON.stringify(activity)
+
+    return axios.post(`Users/${auth.user.id}/Activities`, body, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth.user.token}`
+      }
+    })
   }
 
   postSignIn(creds) {
@@ -31,11 +52,12 @@ class FitClient {
   }
 
   postSignOut(userToken) {
-    const body = JSON.stringify(userToken)
+    const body = JSON.stringify({token: userToken})
 
     return axios.post(`logout`, body, {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${userToken}`
       }
     })
   }

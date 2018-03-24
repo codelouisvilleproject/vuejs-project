@@ -15,7 +15,8 @@
 </template>
 
 <script>
-  import { default as fit } from '../../fitClient';
+  import { default as fit } from '@/fitClient';
+  import auth from '@/auth';
   import ActivityModal from './ActivityModal';
   import ActivitiesList from './ActivitiesList';
 
@@ -64,9 +65,20 @@
         axios.post('');
       },
       getActivities: function() {
-        fit.getActivityTypes()
-          .then(res => console.log(res))
+        // fit.getActivityTypes()
+        //   .then(res => console.log('res'))
+        fit.postUserActivity({
+          id: 1,
+          userId: 7,
+          activityTypeId: 0,
+          durationMilliseconds: 10
+        })
       }
+    },
+    mounted() {
+      fit.getUserActivities()
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
     },
     data: function() {
       return {
