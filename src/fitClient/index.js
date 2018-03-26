@@ -12,8 +12,8 @@ class FitClient {
       .then(res => res.data)
   }
 
-  getUserProfileInfo(uid) {
-    return axios.get(`Users/${uid}`)
+  getUserProfileInfo() {
+    return axios.get(`users/${auth.user.id}`)
       .then(res => res.data)
   }
 
@@ -67,6 +67,13 @@ class FitClient {
         'Content-Type': 'application/json'
       }
     }).then(res => res.data)
+  }
+
+
+
+  getLeaders() {
+    return axios.get(`leader`)
+      .then(res => res)
   }
 }
 
