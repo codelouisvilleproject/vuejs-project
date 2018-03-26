@@ -15,7 +15,8 @@
 </template>
 
 <script>
-  import { default as fit } from '../../fitClient';
+  import { default as fit } from '@/fitClient';
+  import auth from '@/auth';
   import ActivityModal from './ActivityModal';
   import ActivitiesList from './ActivitiesList';
 
@@ -65,8 +66,27 @@
       },
       getActivities: function() {
         fit.getActivityTypes()
-          .then(res => console.log(res))
+          .then(res => console.log('res'))
+        // fit.postUserActivity({
+        //   id: 1,
+        //   userId: 7,
+        //   activityTypeId: 0,
+        //   durationMilliseconds: 10
+        // })
       }
+    },
+    mounted() {
+      fit.getActivityTypes()
+        .then(res => {
+          this.avtivityTypes = res.data;
+          console.log(this.activityTypes)
+        })
+      fit.getUserActivities()
+        .then(res => {
+          this.activities = res.data
+          console.log(res.data)
+          console.log(this.activities)
+        })
     },
     data: function() {
       return {
@@ -79,6 +99,7 @@
           duration: '',
           date: Date.now()
         },
+        activityTypes:[],
         activities: [
           {
             name: 'Some 5k',
@@ -86,20 +107,6 @@
             duration: 45,
             date: Date.now(),
             id: 0
-          },
-          {
-            name: 'Daily run',
-            type: 'Cardio',
-            duration: 30,
-            date: Date.now(),
-            id: 1
-          },
-          {
-            name: 'Leg day',
-            type: 'Weight Lifting',
-            duration: 120,
-            date: Date.now(),
-            id: 2
           }
         ]
       }

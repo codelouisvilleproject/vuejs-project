@@ -4,6 +4,7 @@ import 'bulma/css/bulma.css'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import auth from './auth'
 
 Vue.config.productionTip = false
 

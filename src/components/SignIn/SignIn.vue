@@ -56,7 +56,8 @@
 </template>
 
 <script>
-  import { default as fit } from '../../fitClient';
+  import auth from '@/auth'
+  import { default as fit } from '@/fitClient';
   import SignUpModal from './SignUpModal';
 
   export default {
@@ -91,6 +92,7 @@
           .then(res => {
             console.log(res)
             if (res.status === 200) {
+              auth.signIn(res.data.token, res.data)
               this.$router.push({
                 name: 'activity',
                 params: {

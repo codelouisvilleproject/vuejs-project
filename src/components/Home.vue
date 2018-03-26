@@ -33,6 +33,11 @@
 <script>
 export default {
   name: 'Home',
+  data: function() {
+    return {
+
+    }
+  },
   methods: {
     isPath: function(path) {
       return this.$route.name === path
