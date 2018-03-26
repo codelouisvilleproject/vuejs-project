@@ -19,7 +19,7 @@
             <input class="input"
                    type="text"
                    placeholder="Daily run"
-                   v-model="editUser.fName"/>
+                   v-model="editUser.firstName"/>
           </div>
         </div>
 
@@ -29,7 +29,7 @@
             <input class="input"
                    type="text"
                    placeholder="Daily run"
-                   v-model="editUser.lName"/>
+                   v-model="editUser.lastName"/>
           </div>
         </div>
       </div>
