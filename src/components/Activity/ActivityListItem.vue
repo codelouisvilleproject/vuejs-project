@@ -40,11 +40,11 @@
             </select>
           <br>
           <time v-show="!this.isEditing">
-            {{ activity.duration }} minutes
+            {{ activity.durationMilliseconds * 0.00001666667 }} minutes
           </time>
           <input class="input"
                  type="number"
-                 v-model="activity.duration"
+                 v-model="activity.durationMilliseconds"
                  v-show="this.isEditing"/>
         </div>
       </div>

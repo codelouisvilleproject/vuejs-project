@@ -84,8 +84,8 @@ import EditModal from './EditModal';
     },
 
     mounted() {
-        fit.getUserProfileInfo(1234)
-          .then(res => {this.currentUser = res})
+        fit.getUserProfileInfo()
+          .then(res => {this.currentUser = res; console.log(res)})
       }
       // toggleModalState: function() {
       //   this.isModalActive = !this.isModalActive;
