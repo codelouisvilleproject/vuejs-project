@@ -30,7 +30,7 @@
                 <h4>{{currentUser.email}}</h4>
                 <h4>{{currentUser.bio}}</h4>
                 <h4>{{currentUser.weight}}</h4>
-                <h4>{{currentUser.birthMonth}}/{{currentUser.birthDay}}/{{currentUser.birthYear}}</h4>
+                <h4>{{currentUser.birthDay}}/{{currentUser.birthYear}}/{{currentUser.birthMonth}}</h4>
                 <h4>{{currentUser.address1}}</h4>
                 <h4>{{currentUser.address2}}</h4>
                 <h4>{{currentUser.city}} {{currentUser.state}} {{currentUser.zip}}</h4>
@@ -45,7 +45,8 @@
 
     <edit-modal :isModalActive="this.isModalActive"
                 :toggleModalState="this.toggleModalState"
-                :editUser="this.currentUser">
+                :editUser="this.currentUser"
+                :editUserForm="this.editUserForm">
     </edit-modal>
   </div>
 
@@ -72,12 +73,6 @@ import EditModal from './EditModal';
         currentUser:
           {
 
-              firstName: 'Isaac',
-              lastName:  'Cheatham',
-              email:  'myEmail@gmail.com',
-              birthMonth: 11,
-              birthDay: 25,
-              birthYear: 1983
           }
 
       }
@@ -110,7 +105,11 @@ import EditModal from './EditModal';
     methods: {
       toggleModalState: function() {
         this.isModalActive = !this.isModalActive;
-      }
+      },
+      editUserForm: function(newInfo) {
+        fit.putUserProfile(newInfo)
+        .then((res) => console.log(res.message))
+      },
       // logItems: function() {
       //   console.log(typeof this.currentUser);
       // }

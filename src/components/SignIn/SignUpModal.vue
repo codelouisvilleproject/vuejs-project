@@ -133,8 +133,8 @@ export default {
       let bDay = this.birthday.split('-')
 
       signUpForm.birthDay = Number(bDay[2])
-      signUpForm.birthMonth = Number(bDay[0])
-      signUpForm.birthYear = Number(bDay[1])
+      signUpForm.birthMonth = Number(bDay[1])
+      signUpForm.birthYear = Number(bDay[0])
 
       return signUpForm
     }
