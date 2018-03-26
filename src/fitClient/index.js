@@ -18,22 +18,19 @@ class FitClient {
   }
 
   getUserActivities() {
-    const body = JSON.stringify({token: auth.user.token})
-
-    return axios.get(`Users/${auth.user.id}/Activities`, body, {
+    return axios.get(`users/${auth.user.id}/activities`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${auth.user.token}`
-      },
-      data: body
+      }
     })
-      .then(res => res.data)
+      .then(res => res)
   }
 
   postUserActivity(activity) {
     const body = JSON.stringify(activity)
 
-    return axios.post(`Users/${auth.user.id}/Activities`, body, {
+    return axios.post(`users/${auth.user.id}/activities`, body, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${auth.user.token}`

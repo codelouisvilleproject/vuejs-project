@@ -13,7 +13,18 @@ const router = new Router({
     {
       path: '/',
       name: 'signIn',
-      component: SignIn
+      component: SignIn,
+      beforeEnter: function(to, from, next) {
+        // if (auth.token) {
+        //   next({
+        //     name: 'activity',
+        //     params: {
+        //       userName: auth.user.firstName
+        //     }
+        //   })
+        // }
+        next()
+      }
     },
     {
       path: '/:userName/dashboard',
@@ -45,7 +56,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-    console.log(auth)
+    console.log(auth, auth.user.firstName)
     if (!auth.currentStatus()) {
       next({
         path: '/'

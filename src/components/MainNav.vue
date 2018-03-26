@@ -66,7 +66,7 @@ export default {
   text-align: center;
 }
 
-.navbar-brand:hover, .navbar-item:hover {
+.navbar-item:hover {
   background: grey;
   color: #333;
 }

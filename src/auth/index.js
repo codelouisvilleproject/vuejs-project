@@ -25,7 +25,7 @@ class Auth {
   }
 
   getUser() {
-    this.user = JSON.parse(localStorage.getItem('user'))
+    this.user = JSON.parse(localStorage.getItem('user')) || {}
     return this.user
   }
 
