@@ -65,15 +65,14 @@
         axios.post('');
       },
       getActivities: function() {
-        // fit.getActivityTypes()
-        //   .then(res => console.log(res))
-        fit.postUserActivity(
-          {
-            userId: 6,
-            activityTypeId: 3,
-            durationMilliseconds: 0
-          }
-        )
+        fit.getActivityTypes()
+          .then(res => console.log('res'))
+        // fit.postUserActivity({
+        //   id: 1,
+        //   userId: 7,
+        //   activityTypeId: 0,
+        //   durationMilliseconds: 10
+        // })
       }
     },
     mounted() {
