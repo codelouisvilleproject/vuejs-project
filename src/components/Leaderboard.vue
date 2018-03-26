@@ -125,8 +125,8 @@ import { default as fit } from '../fitClient';
     },
 
     mounted() {
-        fit.getUserProfileInfo(1234)
-          .then(res => {this.currentUser = res})
+        fit.getLeaders()
+          .then(res => {this.topTen = res.data})
       },
     methods: {
 

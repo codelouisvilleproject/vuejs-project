@@ -88,6 +88,13 @@ class FitClient {
       }
     }).then(res => res.data)
   }
+
+
+
+  getLeaders() {
+    return axios.get(`leader`)
+      .then(res => res)
+  }
 }
 
 export default new FitClient();
