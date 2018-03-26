@@ -7,13 +7,13 @@ class FitClient {
 
   }
 
-  getActivityTypes() {
-    return axios.get(`activitytypes`)
+  getUserProfileInfo() {
+    return axios.get(`users/${auth.user.id}`)
       .then(res => res.data)
   }
 
-  getUserProfileInfo() {
-    return axios.get(`users/${auth.user.id}`)
+  getActivityTypes() {
+    return axios.get(`activitytypes`)
       .then(res => res.data)
   }
 
@@ -27,6 +27,17 @@ class FitClient {
       .then(res => res)
   }
 
+  putUserActivity(activity) {
+    const body = JSON.stringify(activity)
+
+    return axios.put(`users/${auth.user.id}/activities`, body, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth.user.token}`
+      }
+    })
+  }
+
   postUserActivity(activity) {
     const body = JSON.stringify(activity)
 
@@ -34,6 +45,15 @@ class FitClient {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${auth.user.token}`
+      }
+    })
+  }
+
+  deleteUserActivity(aId) {
+    return axios.delete(`users/${auth.user.id}/activities${aId}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${userToken}`
       }
     })
   }

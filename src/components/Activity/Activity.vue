@@ -40,12 +40,14 @@
             this.newActivity.duration === '') {
           return
         }
-        this.activities.unshift({
+        fit.postUserActivity({
           name: this.newActivity.name,
           type: this.newActivity.type,
-          duration: this.newActivity.duration,
+          durationMilliseconds: this.newActivity.duration * 60000,
           id: this.currentId
-        });
+        })
+          .then(() => fit.getUserActivities())
+
         this.currentId ++
         this.resetNewActivityForm();
         this.toggleModalState();
@@ -65,12 +67,11 @@
         axios.post('');
       },
       getActivities: function() {
-        fit.getActivityTypes()
-          .then(res => console.log('res'))
+        fit.getUserInfo()
         // fit.postUserActivity({
         //   id: 1,
         //   userId: 7,
-        //   activityTypeId: 0,
+        //   activityTypeId: 3,
         //   durationMilliseconds: 10
         // })
       }
@@ -78,8 +79,7 @@
     mounted() {
       fit.getActivityTypes()
         .then(res => {
-          this.avtivityTypes = res.data;
-          console.log(this.activityTypes)
+          this.avtivityTypes = res;
         })
       fit.getUserActivities()
         .then(res => {
@@ -96,7 +96,7 @@
         newActivity: {
           name: '',
           type: 'Cardio',
-          duration: '',
+          durationMilliseconds: '',
           date: Date.now()
         },
         activityTypes:[],
