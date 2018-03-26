@@ -18,7 +18,6 @@
           <div class="control">
             <input class="input"
                    type="text"
-                   placeholder="Daily run"
                    v-model="editUser.firstName"/>
           </div>
         </div>
@@ -28,7 +27,6 @@
           <div class="control">
             <input class="input"
                    type="text"
-                   placeholder="Daily run"
                    v-model="editUser.lastName"/>
           </div>
         </div>
@@ -42,7 +40,6 @@
           <div class="control">
             <input class="input"
                    type="text"
-                   placeholder="Daily run"
                    v-model="editUser.email"/>
           </div>
         </div>
@@ -70,7 +67,7 @@
       </section>
       <footer class="modal-card-foot">
         <button class="button is-success"
-                @click="toggleModalState">Submit Activity</button>
+                @click="editUserForm(processData(editUser))">Update Profile</button>
         <button class="button"
                 @click="toggleModalState">Cancel</button>
       </footer>
@@ -83,8 +80,15 @@ export default {
   props: [
     'isModalActive',
     'toggleModalState',
-    'editUser'
+    'editUser',
+    'editUserForm'
   ],
+  methods: {
+    processData(editUser) {
+
+      return editUser
+    }
+  }
 }
 
 </script>
