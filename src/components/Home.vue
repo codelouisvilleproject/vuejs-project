@@ -16,6 +16,13 @@
             <span>Profile</span>
           </a>
         </li>
+        <li :class="{ 'is-active': isPath('leaderboard') }"
+            @click="goToRoute(3)">
+          <a>
+            <span class="icon is-small"><i class="fas fa-user"></i></span>
+            <span>Leaderboard</span>
+          </a>
+        </li>
       </ul>
     </div>
 
@@ -39,11 +46,14 @@ export default {
       const home = (index ===2);
       const activity = (index === 0);
       const profile = (index === 1);
+      const leaderboard = (index === 3);
 
       if (activity) {
         this.$router.push('activity');
       } else if (profile) {
         this.$router.push('profile');
+      } else if (leaderboard) {
+        this.$router.push('leaderboard');
       }
     }
   }
