@@ -41,7 +41,7 @@ export default {
 }
 
 .navbar-item img {
-  max-height: 75px;
+  max-height: 100px;
 }
 
 .navbar-link {
